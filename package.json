@@ -16,7 +16,6 @@
     "concurrently": "^5.1.0"
   },
   "dependencies": {
-    "bcrypt": "^5.1.0",
     "node-addon-api": "^5.0.0",
     "npm": "^9.2.0"
   }

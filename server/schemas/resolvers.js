@@ -1,5 +1,5 @@
 const { User, Book } = require('../models');
-const { AuthErr } = require(' apollo-server-express');
+const { AuthErr } = require('apollo-server-express');
 const { Auth } = require('../utils/auth');
 
 
