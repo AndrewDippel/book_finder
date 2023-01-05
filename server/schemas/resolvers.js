@@ -15,7 +15,7 @@ const resolvers = {
     },
   },
   Mutation: {
-    newUser: async (parent, args) => {
+    addUser: async (parent, args) => {
       const user = await User.create(args);
       const token = Auth(user);
       return { user, token };
@@ -43,7 +43,7 @@ const resolvers = {
       }
       throw new AuthErr(' Please Log in! ')
     },
-    deleteBook: async (parent, { bookId }, data) => {
+    removeBook: async (parent, { bookId }, data) => {
       if (data.user) {
         const updateUser = await User.findByIdAndUpdate(
           { _id: data.user._id },
