@@ -26,16 +26,20 @@ app.get('*', (req, res) => {
 })
 
 app.use(routes);
+const startApolloServer = async (typeDefs, resolvers) => {
+  await server.start();
+  server.applyMiddleware({ app });
 
-db.once('open', () => {
-  app.listen(PORT, () => {
-    console.log(`🌍 Now listening on localhost:${PORT}`)
-    console.log(`use GraphQl at http://localhost:${PORT}${server.graphqlPath}`);
+  db.once('open', () => {
+    app.listen(PORT, () => {
+      console.log(`🌍 Now listening on localhost:${PORT}`)
+      console.log(`use GraphQl at http://localhost:${PORT}${server.graphqlPath}`);
+    });
   });
-});
+}
 
 process.on('uncaughtException', function (err) {
   console.log('caught exception: ' + err);
 })
 
-server.applyMiddleware({ app });
+startApolloServer(typeDefs, resolvers);
