@@ -1,10 +1,15 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Routes, Route } from 'react-router-dom';
 import SearchBooks from './pages/SearchBooks';
 import SavedBooks from './pages/SavedBooks';
 import Navbar from './components/Navbar';
-import { ApolloProvider } from '@apollo/react-hooks';
-import ApolloClient from 'apollo-boost';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 
 const client = new ApolloClient({
   request: operation => {
@@ -13,7 +18,8 @@ const client = new ApolloClient({
       headers: { authorization: token ? `bearer ${token}` : '' }
     })
   },
-  uri: '/graphql'
+  uri: '/graphql',
+  cache: new InMemoryCache(),
 })
 
 function App() {
@@ -22,11 +28,11 @@ function App() {
       <Router>
         <>
           <Navbar />
-          <switch>
-            <route exact path='/' component={SearchBooks} />
-            <route exact path='/saved' component={SavedBooks} />
-            <route render={() => <h1 className='display-2'>Page Does Not Exist</h1>} />
-          </switch>
+          <Switch>
+            <Route exact path='/' component={SearchBooks} />
+            <Route exact path='/saved' component={SavedBooks} />
+            <Route render={() => <h1 className='display-2'>Page Does Not Exist</h1>} />
+          </Switch>
         </>
       </Router>
     </ApolloProvider>

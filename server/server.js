@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3001;
 
 const server = new ApolloServer({ typeDefs, resolvers, context: authMiddleware })
 
-server.applyMiddleware({ app });
+
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -37,3 +37,5 @@ db.once('open', () => {
 process.on('uncaughtException', function (err) {
   console.log('caught exception: ' + err);
 })
+
+server.applyMiddleware({ app });
