@@ -59,8 +59,8 @@ follow the link provided and enjoy your movie selections
 
 ## Links
 
-* github: https://github.com/AndrewDippel/Social-Network-API.git
-* heroku deployment: https://radiant-escarpment-30419.herokuapp.com/
+* github: https://github.com/AndrewDippel/book_finder.git
+* deployment:https://andrewdippel.github.io/book_finder/
 
 ## Credits
 
